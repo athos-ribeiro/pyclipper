@@ -60,7 +60,7 @@ from libcpp.vector cimport vector
 cdef extern from "extra_defines.hpp":
     cdef int _USE_XYZ
 
-cdef extern from "clipper.hpp" namespace "ClipperLib":
+cdef extern from "polyclipping/clipper.hpp" namespace "ClipperLib":
 
     # enum ClipType { ctIntersection, ctUnion, ctDifference, ctXor };
     cdef enum ClipType:

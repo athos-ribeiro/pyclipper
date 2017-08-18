@@ -23,7 +23,7 @@ if dev_mode:
     from Cython.Distutils import build_ext
 
     print('Development mode: Compiling Cython modules from .pyx sources.')
-    sources = ["pyclipper/pyclipper.pyx", "pyclipper/clipper.cpp"]
+    sources = ["pyclipper/pyclipper.pyx"]
 
     from setuptools.command.sdist import sdist as _sdist
 
@@ -40,7 +40,7 @@ if dev_mode:
 
 else:
     print('Distribution mode: Compiling Cython generated .cpp sources.')
-    sources = ["pyclipper/pyclipper.cpp", "pyclipper/clipper.cpp"]
+    sources = ["pyclipper/pyclipper.cpp"]
     cmdclass = {}
 
 
@@ -55,7 +55,8 @@ ext = Extension("pyclipper",
                 # Available definitions that can be used with pyclipper:
                 # use_lines, use_int32
                 # See pyclipper/clipper.hpp
-                define_macros=[('use_lines', 1)]
+                define_macros=[('use_lines', 1)],
+                extra_link_args=["-L", "/usr/lib64", "-l", "polyclipping"]
                 )
 
 with open("README.rst", "r", encoding='utf-8') as readme:
